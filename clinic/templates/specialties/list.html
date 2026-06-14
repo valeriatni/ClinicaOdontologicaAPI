@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialidades</title>
+</head>
+
+<body>
+
+    <h1>Lista de Especialidades</h1>
+
+    <hr>
+
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <ul>
+
+        {% for specialty in specialties %}
+
+            <li>
+
+                <b>{{ specialty.name }}</b>
+
+                - {{ specialty.description }}
+
+                {% if specialty.is_active %}
+                    <span>ACTIVO</span>
+
+                    <form method="POST"
+                          action="/specialties/delete/{{ specialty.id }}/">
+
+                        {% csrf_token %}
+
+                        <button type="submit">
+                            Desactivar
+                        </button>
+
+                    </form>
+
+                {% else %}
+
+                    <span>INACTIVO</span>
+
+                    <form method="POST"
+                          action="/specialties/activate/{{ specialty.id }}/">
+
+                        {% csrf_token %}
+
+                        <button type="submit">
+                            Activar
+                        </button>
+
+                    </form>
+
+                {% endif %}
+
+                <br>
+
+                <a href="/specialties/edit/{{ specialty.id }}/">
+                    Editar
+                </a>
+
+            </li>
+
+            <br>
+
+        {% empty %}
+
+            <li>No hay especialidades</li>
+
+        {% endfor %}
+
+    </ul>
+
+    <br>
+
+    <a href="/specialties/create/">
+        Crear especialidad
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

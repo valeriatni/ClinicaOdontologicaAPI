@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagos</title>
+</head>
+
+<body>
+
+    <h1>Lista de Pagos</h1>
+
+    <hr>
+
+    {% for payment in payments %}
+
+        <li>
+
+            <b>ID Pago:</b>
+            {{ payment.id }}
+
+            <br><br>
+
+            <b>Monto:</b>
+            S/. {{ payment.amount }}
+
+            <br><br>
+
+            <b>Método:</b>
+            {{ payment.payment_method }}
+
+            <br><br>
+
+            <b>Referencia:</b>
+            {{ payment.reference_number }}
+
+            <br><br>
+
+            <b>Fecha:</b>
+            {{ payment.payment_date }}
+
+            <br><br>
+
+            {% if payment.budget %}
+
+                <b>Presupuesto:</b>
+                {{ payment.budget }}
+
+                <br><br>
+
+            {% endif %}
+
+            {% if payment.appointment %}
+
+                <b>Cita:</b>
+                {{ payment.appointment }}
+
+                <br><br>
+
+            {% endif %}
+
+            <a href="/payments/edit/{{ payment.id }}/">
+                Editar
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay pagos registrados</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/payments/create/">
+        Registrar pago
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

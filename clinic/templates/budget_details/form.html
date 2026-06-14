@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de Presupuesto</title>
+</head>
+
+<body>
+
+    <h1>
+        Registrar Detalle
+    </h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+            Presupuesto
+        </label>
+
+        <br>
+
+        <small>
+            Seleccione el presupuesto del paciente
+        </small>
+
+        <br>
+
+        <select name="budget_id">
+
+            {% for budget in budgets %}
+
+                <option value="{{ budget.id }}">
+
+                    Presupuesto #{{ budget.id }}
+
+                    -
+
+                    {{ budget.patient }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Procedimiento
+        </label>
+
+        <br>
+
+        <small>
+            Tratamiento o servicio realizado
+        </small>
+
+        <br>
+
+        <select name="procedure_id">
+
+            {% for procedure in procedures %}
+
+                <option value="{{ procedure.id }}">
+
+                    {{ procedure.name }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Cantidad
+        </label>
+
+        <br>
+
+        <small>
+            Número de procedimientos
+        </small>
+
+        <br>
+
+        <input
+            type="number"
+            name="quantity"
+            placeholder="Ejemplo: 2">
+
+        <br><br>
+
+        <label>
+            Precio Unitario
+        </label>
+
+        <br>
+
+        <small>
+            Precio por cada procedimiento
+        </small>
+
+        <br>
+
+        <input
+            type="number"
+            step="0.01"
+            name="unit_price"
+            placeholder="Ejemplo: 150.00">
+
+        <br><br>
+
+        <label>
+            Estado
+        </label>
+
+        <br>
+
+        <small>
+            Estado actual del procedimiento
+        </small>
+
+        <br>
+
+        <select name="item_status">
+
+            <option value="Pending">
+                Pendiente
+            </option>
+
+            <option value="Completed">
+                Completado
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+
+            Guardar
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/budget-details/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

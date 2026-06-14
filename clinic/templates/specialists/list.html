@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especialistas</title>
+</head>
+
+<body>
+
+    <h1>Lista de Especialistas</h1>
+
+    <hr>
+
+    {% for specialist in specialists %}
+
+        <li>
+
+            <b>
+                {{ specialist.first_name }}
+                {{ specialist.last_name }}
+            </b>
+
+            - CMP: {{ specialist.cmp }}
+
+            - Especialidad:
+            {{ specialist.specialty.name }}
+
+            {% if specialist.is_active %}
+
+                <span style="color:green;">
+                    ACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/specialists/delete/{{ specialist.id }}/"
+                      style="display:inline;">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Desactivar
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <span style="color:red;">
+                    INACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/specialists/activate/{{ specialist.id }}/"
+                      style="display:inline;">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Activar
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+            <br>
+
+            <a href="/specialists/edit/{{ specialist.id }}/">
+                Editar
+            </a>
+
+        </li>
+
+        <br>
+
+    {% empty %}
+
+        <p>No hay especialistas</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/specialists/create/">
+        Crear especialista
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

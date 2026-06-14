@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Especialidad</title>
+</head>
+
+<body>
+
+    <h1>Editar Especialidad</h1>
+
+    <hr>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text"
+               name="name"
+               value="{{ specialty.name }}">
+
+        <br><br>
+
+        <textarea name="description">{{ specialty.description }}</textarea>
+
+        <br><br>
+
+        <button type="submit">
+            Actualizar
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/specialties/">
+        Volver
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Especialista</title>
+</head>
+
+<body>
+
+    <h1>Crear Especialista</h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="number"
+               name="specialty_id"
+               placeholder="ID de especialidad">
+
+        <br><br>
+
+        <input type="text"
+               name="first_name"
+               placeholder="Nombre del especialista">
+
+        <br><br>
+
+        <input type="text"
+               name="last_name"
+               placeholder="Apellido del especialista">
+
+        <br><br>
+
+        <input type="text"
+               name="license_number"
+               placeholder="Licencia médica - Ej: MED12345">
+
+        <br><br>
+
+        <input type="text"
+               name="phone"
+               placeholder="Teléfono">
+
+        <br><br>
+
+        <input type="email"
+               name="email"
+               placeholder="Correo electrónico">
+
+        <br><br>
+
+        <button type="submit">
+            Guardar
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/specialists/">
+        Volver
+    </a>
+
+</body>
+
+</html>

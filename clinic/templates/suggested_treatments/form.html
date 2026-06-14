@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratamiento</title>
+</head>
+
+<body>
+
+    <h1>
+        Registrar Tratamiento
+    </h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+            Historia Clínica del Paciente
+        </label>
+
+        <br>
+
+        <select name="medical_record_id">
+
+            <option value="">
+                Seleccione una historia clínica
+            </option>
+
+            {% for record in medical_records %}
+
+                <option value="{{ record.id }}">
+
+                    Historia #{{ record.id }}
+
+                    -
+
+                    {{ record.patient.first_name }}
+                    {{ record.patient.last_name }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Especialista Responsable
+        </label>
+
+        <br>
+
+        <select name="specialist_id">
+
+            <option value="">
+                Seleccione un especialista
+            </option>
+
+            {% for specialist in specialists %}
+
+                <option value="{{ specialist.id }}">
+
+                    Dr(a).
+
+                    {{ specialist.first_name }}
+                    {{ specialist.last_name }}
+
+                    -
+
+                    {{ specialist.specialty.name }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Diagnóstico Médico
+        </label>
+
+        <br>
+
+        <textarea
+            name="diagnosis"
+            rows="4"
+            cols="40"
+            placeholder="Ejemplo: Caries profunda en molar superior izquierdo">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Descripción del Tratamiento
+        </label>
+
+        <br>
+
+        <textarea
+            name="treatment_description"
+            rows="5"
+            cols="40"
+            placeholder="Ejemplo: Limpieza, extracción y colocación de resina">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Fecha del Diagnóstico
+        </label>
+
+        <br>
+
+        <input
+            type="date"
+            name="diagnosis_date">
+
+        <br><br>
+
+        <label>
+            Estado del Tratamiento
+        </label>
+
+        <br>
+
+        <select name="treatment_status">
+
+            <option value="Suggested">
+                Sugerido
+            </option>
+
+            <option value="Budgeted">
+                Presupuestado
+            </option>
+
+            <option value="In Progress">
+                En progreso
+            </option>
+
+            <option value="Finished">
+                Finalizado
+            </option>
+
+            <option value="Cancelled">
+                Cancelado
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+
+            Guardar
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/suggested-treatments/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

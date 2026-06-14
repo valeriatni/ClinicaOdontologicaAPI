@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presupuestos</title>
+</head>
+
+<body>
+
+    <h1>Lista de Presupuestos</h1>
+
+    <hr>
+
+    {% for budget in budgets %}
+
+        <li>
+
+            <b>ID:</b>
+            {{ budget.id }}
+
+            <br><br>
+
+            <b>Paciente:</b>
+            {{ budget.patient }}
+
+            <br><br>
+
+            <b>Tratamiento:</b>
+            {{ budget.suggested_treatment }}
+
+            <br><br>
+
+            <b>Fecha:</b>
+            {{ budget.issue_date }}
+
+            <br><br>
+
+            <b>Total bruto:</b>
+            S/. {{ budget.gross_total }}
+
+            <br><br>
+
+            <b>Descuento:</b>
+            S/. {{ budget.discount }}
+
+            <br><br>
+
+            <b>Total neto:</b>
+            S/. {{ budget.net_total }}
+
+            <br><br>
+
+            <b>Estado:</b>
+            {{ budget.budget_status }}
+
+            <br><br>
+
+            <a href="/budgets/edit/{{ budget.id }}/">
+                Editar
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay presupuestos registrados</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/budgets/create/">
+        Crear presupuesto
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

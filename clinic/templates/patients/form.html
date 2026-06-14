@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Paciente</title>
+</head>
+
+<body>
+
+    <h1>Crear Paciente</h1>
+
+    <hr>
+
+    <!-- MENSAJES -->
+    {% if messages %}
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <input type="text" name="first_name" placeholder="Nombre">
+        <br><br>
+
+        <input type="text" name="last_name" placeholder="Apellido">
+        <br><br>
+
+        <input type="text" name="dni" placeholder="DNI">
+        <br><br>
+
+        <input type="text" name="phone" placeholder="Teléfono">
+        <br><br>
+
+        <input type="email" name="email" placeholder="Email">
+        <br><br>
+
+        <input type="date" name="birth_date">
+        <br><br>
+
+        <input type="text" name="address" placeholder="Dirección">
+        <br><br>
+
+        <button type="submit">Guardar</button>
+
+    </form>
+
+    <br>
+
+    <a href="/patients/">Volver</a>
+
+</body>
+
+</html>

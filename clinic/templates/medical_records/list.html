@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historias Clínicas</title>
+</head>
+
+<body>
+
+    <h1>Historias Clínicas</h1>
+
+    <hr>
+
+    {% for medical_record in medical_records %}
+
+        <li>
+
+            <b>Paciente:</b>
+            {{ medical_record.patient }}
+
+            <br><br>
+
+            <b>Antecedentes:</b>
+            {{ medical_record.medical_history }}
+
+            <br><br>
+
+            <b>Alergias:</b>
+            {{ medical_record.allergies }}
+
+            <br><br>
+
+            <b>Observaciones:</b>
+            {{ medical_record.general_observations }}
+
+            <br><br>
+
+            {% if medical_record.is_active %}
+
+                <span style="color:green;">
+                    ACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/medical-records/delete/{{ medical_record.id }}/">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Desactivar
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <span style="color:red;">
+                    INACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/medical-records/activate/{{ medical_record.id }}/">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Activar
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+            <br><br>
+
+            <a href="/medical-records/edit/{{ medical_record.id }}/">
+                Editar
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay historias clínicas</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/medical-records/create/">
+        Crear historia clínica
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedimientos</title>
+</head>
+
+<body>
+
+    <h1>Lista de Procedimientos</h1>
+
+    <hr>
+
+    {% for procedure in procedures %}
+
+        <li>
+
+            <b>Nombre:</b>
+            {{ procedure.name }}
+
+            <br><br>
+
+            <b>Descripción:</b>
+            {{ procedure.description }}
+
+            <br><br>
+
+            <b>Precio Base:</b>
+            S/. {{ procedure.base_price }}
+
+            <br><br>
+
+            {% if procedure.is_active %}
+
+                <span style="color:green;">
+                    ACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/procedures/delete/{{ procedure.id }}/">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Desactivar
+                    </button>
+
+                </form>
+
+            {% else %}
+
+                <span style="color:red;">
+                    INACTIVO
+                </span>
+
+                <form method="POST"
+                      action="/procedures/activate/{{ procedure.id }}/">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Activar
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+            <br><br>
+
+            <a href="/procedures/edit/{{ procedure.id }}/">
+                Editar
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay procedimientos registrados</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/procedures/create/">
+        Crear procedimiento
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

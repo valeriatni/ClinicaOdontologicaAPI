@@ -1,0 +1,112 @@
+</html>
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Procedimiento</title>
+</head>
+
+<body>
+
+    <h1>
+        Registrar Procedimiento
+    </h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+            Nombre del Procedimiento
+        </label>
+
+        <br>
+
+        <small>
+            Nombre del tratamiento o servicio médico
+        </small>
+
+        <br>
+
+        <input
+            type="text"
+            name="name"
+            placeholder="Ejemplo: Limpieza dental">
+
+        <br><br>
+
+        <label>
+            Descripción
+        </label>
+
+        <br>
+
+        <small>
+            Detalle breve del procedimiento realizado
+        </small>
+
+        <br>
+
+        <textarea
+            name="description"
+            rows="5"
+            cols="40"
+            placeholder="Ejemplo: Eliminación de placa bacteriana y sarro dental">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Precio Base
+        </label>
+
+        <br>
+
+        <small>
+            Costo inicial del procedimiento
+        </small>
+
+        <br>
+
+        <input
+            type="number"
+            step="0.01"
+            name="base_price"
+            placeholder="Ejemplo: 120.00">
+
+        <br><br>
+
+        <button type="submit">
+
+            Guardar
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/procedures/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

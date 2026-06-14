@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citas</title>
+</head>
+
+<body>
+
+    <h1>Lista de Citas</h1>
+
+    <hr>
+
+    {% for appointment in appointments %}
+
+        <li>
+
+            <b>Paciente:</b>
+            {{ appointment.patient }}
+
+            <br>
+
+            <b>Especialista:</b>
+            {{ appointment.specialist }}
+
+            <br>
+
+            <b>Fecha:</b>
+            {{ appointment.appointment_date }}
+
+            <br>
+
+            <b>Hora:</b>
+            {{ appointment.appointment_time }}
+
+            <br>
+
+            <b>Motivo:</b>
+            {{ appointment.reason }}
+
+            <br>
+
+            <b>Estado:</b>
+            {{ appointment.appointment_status }}
+
+            <br><br>
+
+            <a href="/appointments/edit/{{ appointment.id }}/">
+                Editar
+            </a>
+
+            <br><br>
+
+            {% if appointment.appointment_status != "Cancelled" %}
+
+                <form method="POST"
+                      action="/appointments/cancel/{{ appointment.id }}/">
+
+                    {% csrf_token %}
+
+                    <button type="submit">
+                        Cancelar cita
+                    </button>
+
+                </form>
+
+            {% endif %}
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay citas registradas</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/appointments/create/">
+        Crear cita
+    </a>
+
+    <br><br>
+
+    <a href="/">
+        Volver
+    </a>
+
+</body>
+
+</html>

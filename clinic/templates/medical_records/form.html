@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia Clínica</title>
+</head>
+
+<body>
+
+    <h1>
+        Registrar Historia Clínica
+    </h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+            Paciente
+        </label>
+
+        <br>
+
+        <small>
+            Seleccione el paciente registrado
+        </small>
+
+        <br>
+
+        <select name="patient_id">
+
+            {% for patient in patients %}
+
+                <option value="{{ patient.id }}">
+
+                    {{ patient.first_name }}
+                    {{ patient.last_name }}
+
+                    -
+
+                    DNI: {{ patient.dni }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Antecedentes Médicos
+        </label>
+
+        <br>
+
+        <small>
+            Enfermedades, cirugías o problemas anteriores
+        </small>
+
+        <br>
+
+        <textarea
+            name="medical_history"
+            rows="5"
+            cols="40"
+            placeholder="Ejemplo: Diabetes, hipertensión, extracción dental previa">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Alergias
+        </label>
+
+        <br>
+
+        <small>
+            Medicamentos o sustancias que generan alergia
+        </small>
+
+        <br>
+
+        <textarea
+            name="allergies"
+            rows="4"
+            cols="40"
+            placeholder="Ejemplo: Alergia a la penicilina">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Observaciones Generales
+        </label>
+
+        <br>
+
+        <small>
+            Comentarios adicionales del especialista
+        </small>
+
+        <br>
+
+        <textarea
+            name="general_observations"
+            rows="5"
+            cols="40"
+            placeholder="Ejemplo: Paciente nervioso durante la consulta">
+        </textarea>
+
+        <br><br>
+
+        <button type="submit">
+
+            Guardar
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/medical-records/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

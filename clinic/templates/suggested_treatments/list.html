@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tratamientos</title>
+</head>
+
+<body>
+
+    <h1>Tratamientos Sugeridos</h1>
+
+    <hr>
+
+    {% for treatment in treatments %}
+
+        <li>
+
+            <b>Diagnóstico:</b>
+
+            {{ treatment.diagnosis }}
+
+            <br><br>
+
+            <b>Descripción:</b>
+
+            {{ treatment.treatment_description }}
+
+            <br><br>
+
+            <b>Especialista:</b>
+
+            {{ treatment.specialist }}
+
+            <br><br>
+
+            <b>Historia Clínica:</b>
+
+            {{ treatment.medical_record }}
+
+            <br><br>
+
+            <b>Fecha:</b>
+
+            {{ treatment.diagnosis_date }}
+
+            <br><br>
+
+            <b>Estado:</b>
+
+            {{ treatment.treatment_status }}
+
+            <br><br>
+
+            <a href="/suggested-treatments/edit/{{ treatment.id }}/">
+
+                Editar
+
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay tratamientos registrados</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/suggested-treatments/create/">
+
+        Crear tratamiento
+
+    </a>
+
+    <br><br>
+
+    <a href="/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

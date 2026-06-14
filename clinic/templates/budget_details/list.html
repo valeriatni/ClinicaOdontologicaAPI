@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Detalles de Presupuesto</title>
+</head>
+
+<body>
+
+    <h1>Detalles del Presupuesto</h1>
+
+    <hr>
+
+    {% for detail in details %}
+
+        <li>
+
+            <b>Presupuesto:</b>
+
+            {{ detail.budget.id }}
+
+            <br><br>
+
+            <b>Procedimiento:</b>
+
+            {{ detail.procedure.name }}
+
+            <br><br>
+
+            <b>Cantidad:</b>
+
+            {{ detail.quantity }}
+
+            <br><br>
+
+            <b>Precio Unitario:</b>
+
+            S/. {{ detail.unit_price }}
+
+            <br><br>
+
+            <b>Subtotal:</b>
+
+            S/. {{ detail.subtotal }}
+
+            <br><br>
+
+            <b>Estado:</b>
+
+            {{ detail.item_status }}
+
+            <br><br>
+
+            <a href="/budget-details/edit/{{ detail.id }}/">
+
+                Editar
+
+            </a>
+
+        </li>
+
+        <hr>
+
+    {% empty %}
+
+        <p>No hay detalles registrados</p>
+
+    {% endfor %}
+
+    <br>
+
+    <a href="/budget-details/create/">
+
+        Crear detalle
+
+    </a>
+
+    <br><br>
+
+    <a href="/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>

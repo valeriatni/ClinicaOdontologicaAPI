@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cita</title>
+</head>
+
+<body>
+
+    <h1>
+        Registrar Cita
+    </h1>
+
+    <hr>
+
+    {% if messages %}
+
+        {% for message in messages %}
+
+            <p>{{ message }}</p>
+
+        {% endfor %}
+
+    {% endif %}
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        <label>
+            Paciente
+        </label>
+
+        <br>
+
+        <small>
+            Seleccione el paciente que asistirá
+        </small>
+
+        <br>
+
+        <select name="patient_id">
+
+            {% for patient in patients %}
+
+                <option value="{{ patient.id }}">
+
+                    {{ patient.first_name }}
+                    {{ patient.last_name }}
+
+                    -
+
+                    DNI: {{ patient.dni }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Especialista
+        </label>
+
+        <br>
+
+        <small>
+            Doctor encargado de la consulta
+        </small>
+
+        <br>
+
+        <select name="specialist_id">
+
+            {% for specialist in specialists %}
+
+                <option value="{{ specialist.id }}">
+
+                    Dr(a).
+
+                    {{ specialist.first_name }}
+                    {{ specialist.last_name }}
+
+                    -
+
+                    {{ specialist.specialty.name }}
+
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <br><br>
+
+        <label>
+            Fecha de la Cita
+        </label>
+
+        <br>
+
+        <small>
+            Día programado para la atención
+        </small>
+
+        <br>
+
+        <input
+            type="date"
+            name="appointment_date">
+
+        <br><br>
+
+        <label>
+            Hora de la Cita
+        </label>
+
+        <br>
+
+        <small>
+            Horario entre 08:00 y 18:00
+        </small>
+
+        <br>
+
+        <input
+            type="time"
+            name="appointment_time">
+
+        <br><br>
+
+        <label>
+            Motivo de la Consulta
+        </label>
+
+        <br>
+
+        <small>
+            Describa brevemente el problema del paciente
+        </small>
+
+        <br>
+
+        <textarea
+            name="reason"
+            rows="5"
+            cols="40"
+            placeholder="Ejemplo: Dolor de muela y sensibilidad al frío">
+        </textarea>
+
+        <br><br>
+
+        <label>
+            Estado de la Cita
+        </label>
+
+        <br>
+
+        <small>
+            Situación actual de la atención
+        </small>
+
+        <br>
+
+        <select name="appointment_status">
+
+            <option value="Pending">
+                Pendiente
+            </option>
+
+            <option value="Confirmed">
+                Confirmada
+            </option>
+
+            <option value="Waiting">
+                En espera
+            </option>
+
+            <option value="In Consultation">
+                En consulta
+            </option>
+
+            <option value="Attended">
+                Atendida
+            </option>
+
+            <option value="Cancelled">
+                Cancelada
+            </option>
+
+            <option value="No Show">
+                No asistió
+            </option>
+
+        </select>
+
+        <br><br>
+
+        <button type="submit">
+
+            Guardar
+
+        </button>
+
+    </form>
+
+    <br>
+
+    <a href="/appointments/">
+
+        Volver
+
+    </a>
+
+</body>
+
+</html>
