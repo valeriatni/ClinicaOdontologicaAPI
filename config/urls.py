@@ -32,7 +32,7 @@ urlpatterns = [
     # Admin de Django
     path('admin/', admin.site.urls),
 
-    # Vistas normales de la aplicación
+    # Vistas normales de la aplicacion
     path('', include('clinic.urls')),
 
     # API REST
@@ -42,7 +42,7 @@ urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 
-    # Documentación OpenAPI
+    # Documentacion OpenAPI
     path('api/schema/', SpectacularAPIView.as_view(), name='schema'),
 
     # Swagger UI
@@ -50,12 +50,5 @@ urlpatterns = [
         'api/schema/swagger-ui/',
         SpectacularSwaggerView.as_view(url_name='schema'),
         name='swagger-ui'
-    ),
-
-    # ReDoc
-    path(
-        'api/schema/redoc/',
-        SpectacularRedocView.as_view(url_name='schema'),
-        name='redoc'
     ),
 ]
