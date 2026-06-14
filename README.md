@@ -76,7 +76,7 @@ El sistema está compuesto por las siguientes entidades:
 ## 1. Clonar el repositorio
 
 ```bash
-git clone URL_DEL_REPOSITORIO
+git clone https://github.com/valeriatni/ClinicaOdontologicaAPI.git
 cd ClinicaOdontologicaAPI
 ```
 
