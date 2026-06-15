@@ -1,5 +1,7 @@
 # Clínica Odontológica API
-
+#Integrantes
+- Ticona Nina Valeria Abigai
+- Velasquez Puma Brigitte Karolay
 ## Descripción
 
 Clínica Odontológica API es una aplicación web desarrollada con Django y Django REST Framework para la gestión interna de una clínica odontológica.
